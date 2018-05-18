@@ -412,3 +412,10 @@ class TestValidatorFunctional(unittest.TestCase):
 
         with self.assertRaisesRegexp(AssertionError, expected_error):
             tagged_buckets.property("policy").should_contain_valid_json()
+
+    def test_with_modules(self):
+        try:
+            t.Validator(os.path.join(self.path,"fixtures/has_modules"))
+        except Exception as e:
+            self.failureException = e
+            self.fail()
